@@ -1,0 +1,36 @@
+extends layout
+block content
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/home') School
+        ul.nav.navbar-nav
+          li
+            a(href='/home') Home
+          li
+            a(href='/about') About
+        ul.nav.navbar-nav.navbar-right
+          li.dropdown
+            a.dropdown-toggle(data-toggle='dropdown', href='#')
+              span.glyphicon.glyphicon-user
+              |  Sign Up 
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='/ssignup') Student
+              li
+                a(href='/tsignup') Teacher
+    .container
+      h2 Login Form
+      form(method='POST', action='/slogin')
+        .form-group
+          label(for='email') Email:
+          input#email.form-control(type='email', placeholder='Enter email', name='email' required)
+        .form-group
+          label(for='pwd') Password:
+          input#pwd.form-control(type='password', placeholder='Enter password', name='pwd' required)
+        .checkbox
+          label
+            input(type='checkbox', name='remember')
+            |  Remember me
+        button.btn.btn-default(type='submit') Submit

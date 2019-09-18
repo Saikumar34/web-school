@@ -1,0 +1,43 @@
+extends layout
+block content
+    nav.navbar.navbar-inverse
+        .container-fluid
+            .navbar-header
+                a.navbar-brand(href='/home') School
+            ul.nav.navbar-nav
+                li
+                    a(href='/home') Home
+                li
+                    a(href='/about') About
+            ul.nav.navbar-nav.navbar-right
+                if name
+                    li
+                        a(href='#') 
+                            span.glyphicon.glyphicon-user #{name}
+                    li
+                        a(href='/logout') 
+                            span.glyphicon.glyphicon-log-out Logout
+                else
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            span.glyphicon.glyphicon-user
+                            |  Sign Up 
+                            span.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='/ssignup') Student
+                            li
+                                a(href='/tsignup') Teacher
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            span.glyphicon.glyphicon-log-in
+                            |  Login 
+                            span.caret
+                        ul.dropdown-menu
+                            li.active
+                                a(href='/slogin') Student
+                            li
+                                a(href='/tlogin') Teacher
+
+    .container-fluid
+      p welcome to school

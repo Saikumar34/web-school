@@ -1,0 +1,48 @@
+extends layout
+block content
+    nav.navbar.navbar-inverse
+        .container-fluid
+            .navbar-header
+                a.navbar-brand(href='#') School
+            ul.nav.navbar-nav
+                li
+                    a(href='#') Home
+                li
+                    a(href='#') About
+            ul.nav.navbar-nav.navbar-right
+                li
+                    a(href='#') 
+                        span.glyphicon.glyphicon-user #{name}
+                li
+                    a(href='/logout') 
+                        span.glyphicon.glyphicon-log-out Logout
+               
+
+    .container
+      h2 Marks Sheet
+      h4 Name: #{name}
+      h4 Rno: #{rno}
+      table.table.table-bordered
+        thead
+          tr
+            th Subject
+            th Marks
+        tbody
+          tr
+            td Telugu
+            td #{mark.telugu}
+          tr
+            td Hindi
+            td #{mark.hindi}
+          tr
+            td English
+            td #{mark.english}
+          tr
+            td Maths
+            td #{mark.maths}
+          tr
+            td Science
+            td #{mark.science}
+          tr
+            td Social
+            td #{mark.social}
