@@ -75,9 +75,18 @@ router.post('/ssignup', function(req, res, next) {
       {
         console.log("successfully added");
           req.session.name = user.firstname;
-          req.session.email = user.email;
-          res.redirect("/results");
-
+          req.session.email = user.rno;
+          models.Marks.findOne({rno:user.rno},(err,mark)=>{
+            if(mark)
+            {
+              console.log("results displayed");
+              res.render('results', { title: 'results',name: req.session.name,rno:user.rno,mark:mark});
+            }
+            else
+            {
+              console.log("error occured :"+err);
+            }
+        });
       }
   });
   
@@ -95,6 +104,7 @@ router.post('/slogin', function(req, res, next) {
         console.log("successfully logined");
         req.session.name = row.firstname;
         req.session.email = row.email;
+        console.log(row.rno);
         models.Marks.findOne({rno:row.rno},(err,mark)=>{
           if(mark)
           {
@@ -138,7 +148,7 @@ router.post('/tsignup', function(req, res, next) {
         console.log("successfully added");
           req.session.name = user.firstname;
           req.session.email = user.email;
-          req.session.sub = user.subject;
+          req.session.sub = user.subject;                                                                                          
           res.redirect("/evaluation");
 
       }
@@ -172,6 +182,8 @@ router.post('/tlogin', function(req, res, next) {
 
 //storing results
 router.post('/store', function(req, res, next) {
+console.log(req.session.sub);
+console.log(req.body);
 var subj = req.session.sub;
 var myquery = { rno: req.body.rno };
 var newvalues;
@@ -206,6 +218,7 @@ if(subj=='social')
       }
       else
       {
+          console.log(newvalues);
           console.log("marks successfully added");
           console.log(res);
       }
